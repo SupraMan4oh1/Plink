@@ -6,7 +6,9 @@ var class_kyanite_1_1_audio_manager =
     [ "calculateMaxSourceCount", "class_kyanite_1_1_audio_manager.html#a42f713cb758e343fe5b45ba8fc06cb23", null ],
     [ "enterFailureState", "class_kyanite_1_1_audio_manager.html#a8b63a0f9fbaf9e21526224c13d41fbb7", null ],
     [ "purgeBufferFromSources", "class_kyanite_1_1_audio_manager.html#aa900764d6d6251bea1eca5e61683efb3", null ],
+    [ "purgeBufferFromSources", "class_kyanite_1_1_audio_manager.html#a15ba9edd7aadbc47795f62e77751d0a3", null ],
     [ "purgeBufferGroupFromSources", "class_kyanite_1_1_audio_manager.html#ad353d90c3ec5928be32f938d7953b2eb", null ],
+    [ "purgeBufferGroupFromSources", "class_kyanite_1_1_audio_manager.html#a7153bdeac72869614541bcc8ebd05b4f", null ],
     [ "m_Context", "class_kyanite_1_1_audio_manager.html#af25015ea78c81dee736bb66dbcaa863a", null ],
     [ "m_Device", "class_kyanite_1_1_audio_manager.html#a6e70f858b446717c13a5883d68ab04a2", null ],
     [ "m_MaxSourceCount", "class_kyanite_1_1_audio_manager.html#ae084ebd67346cee8aa70f0e4e1eb1e9a", null ]

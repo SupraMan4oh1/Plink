@@ -13,6 +13,8 @@ var searchData=
   ['m_5fmaxsourcecount',['m_MaxSourceCount',['../class_kyanite_1_1_audio_manager.html#ae084ebd67346cee8aa70f0e4e1eb1e9a',1,'Kyanite::AudioManager']]],
   ['m_5fmouse',['m_Mouse',['../class_base_application.html#a1b8a940489f707ba8d6f991a77a7cfd8',1,'BaseApplication']]],
   ['m_5fparentaudiomanager',['m_ParentAudioManager',['../class_kyanite_1_1_audio_buffer_group.html#a2beabd9828f8b8cafcf5ca4331d85e18',1,'Kyanite::AudioBufferGroup']]],
+  ['m_5fparentaudiomanagervalid',['m_ParentAudioManagerValid',['../class_kyanite_1_1_audio_buffer_group.html#a96232d6086cb24352d9f6f5968a7a119',1,'Kyanite::AudioBufferGroup']]],
+  ['m_5fpathprefix',['m_PathPrefix',['../class_kyanite_1_1_audio_buffer_group.html#a83309a025ea331ce2ec2d29fb7a0d8c8',1,'Kyanite::AudioBufferGroup']]],
   ['m_5fpluginscfg',['m_PluginsCfg',['../class_base_application.html#ab359f0bbe32bd024479cbf23139f5711',1,'BaseApplication']]],
   ['m_5fresourcescfg',['m_ResourcesCfg',['../class_base_application.html#a8062c7f7d1589cdebbcb2753902f046d',1,'BaseApplication']]],
   ['m_5froot',['m_Root',['../class_base_application.html#a8c826a50f653c5cc05b43505cfcf7878',1,'BaseApplication']]],

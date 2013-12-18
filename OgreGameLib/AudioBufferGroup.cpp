@@ -8,10 +8,10 @@
 using namespace Kyanite;
 
 AudioBufferGroup::AudioBufferGroup(AudioManager const * const audio_manager, std::string group_name, std::string path_prefix, 
-	std::vector<std::string> const &file_paths, bool load_files) 
-	: m_ParentAudioManager(audio_manager), m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
+	std::vector<std::string> const &file_paths, bool load_files) : m_ParentAudioManager(audio_manager), m_ParentAudioManagerValid(true), 
+	m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
 {
-	addFiles(file_paths);
+	addBuffers(file_paths);
 
 	if (load_files)
 	{
@@ -35,7 +35,7 @@ ALuint AudioBufferGroup::getBuffer(std::string const &file_path) const
 	return 0;
 }
 
-bool AudioBufferGroup::addFile(std::string const &file_path)
+bool AudioBufferGroup::addBuffer(std::string const &file_path)
 {
 	std::string full_file_path(m_PathPrefix + file_path);
 
@@ -70,13 +70,13 @@ bool AudioBufferGroup::addFile(std::string const &file_path)
 	return true;
 }
 
-int AudioBufferGroup::addFiles(std::vector<std::string> const &file_paths)
+int AudioBufferGroup::addBuffers(std::vector<std::string> const &file_paths)
 {
 	int successful_add_count = 0;
 
 	for (size_t i = 0; i < file_paths.size(); ++i)
 	{
-		addFile(file_paths[i]) ? ++successful_add_count : 0;
+		addBuffer(file_paths[i]) ? ++successful_add_count : 0;
 	}
 
 	return successful_add_count;
@@ -84,6 +84,14 @@ int AudioBufferGroup::addFiles(std::vector<std::string> const &file_paths)
 
 bool AudioBufferGroup::loadBuffer(boost::unordered_map<std::string, ALuint>::iterator &buffer_to_load, bool verify_files_exist)
 {
+	// The AudioManager that spawned this instance is no longer valid and we're forced to fail silently.
+	if (!m_ParentAudioManager)
+	{
+		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- The parent AudioManager of this buffer group is no longer valid. \
+								It is no longer possible to load buffers.", Ogre::LML_NORMAL, false, m_GroupName.c_str());
+		return false;
+	}
+
 	// Skip entirely if the buffer is already loaded.
 	if (buffer_to_load->second != 0)
 	{

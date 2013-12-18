@@ -1,16 +1,27 @@
 var class_kyanite_1_1_audio_buffer_group =
 [
-    [ "AudioBufferGroup", "class_kyanite_1_1_audio_buffer_group.html#a4a643a451f57311b0d5a0c7ea3b75c99", null ],
+    [ "AudioBufferGroup", "class_kyanite_1_1_audio_buffer_group.html#a39599dc54a2f37d5f2564f90c53b592c", null ],
     [ "~AudioBufferGroup", "class_kyanite_1_1_audio_buffer_group.html#ad33889779bd1744cf1cef2828628fb67", null ],
-    [ "addFile", "class_kyanite_1_1_audio_buffer_group.html#a6a2497099fee7c9a859bc89ee8d4027b", null ],
-    [ "addFiles", "class_kyanite_1_1_audio_buffer_group.html#aaddef0dbfa54a5d91ffed53805b1e67c", null ],
+    [ "AudioBufferGroup", "class_kyanite_1_1_audio_buffer_group.html#a6ce5f97571488857e53b7eeebecb2feb", null ],
+    [ "AudioBufferGroup", "class_kyanite_1_1_audio_buffer_group.html#a5eccfac8a9524379fac092cebca15b88", null ],
+    [ "addBuffer", "class_kyanite_1_1_audio_buffer_group.html#a1d2be7ec9a366a712df0b0a50720a3cf", null ],
+    [ "addBuffers", "class_kyanite_1_1_audio_buffer_group.html#a944244ae8c0756f01572648a4448b2df", null ],
     [ "getBuffer", "class_kyanite_1_1_audio_buffer_group.html#aeacc4f8d93ef45fa518de0c72c5f7a4a", null ],
     [ "loadBuffer", "class_kyanite_1_1_audio_buffer_group.html#a954e6199ab0c1b7800e016bf7706adb8", null ],
     [ "loadBuffers", "class_kyanite_1_1_audio_buffer_group.html#a0f3340f5e9bc7cc649ff24eb83eb9609", null ],
+    [ "operator=", "class_kyanite_1_1_audio_buffer_group.html#a9a615424176dc029de9b22568f3ef37c", null ],
+    [ "operator=", "class_kyanite_1_1_audio_buffer_group.html#a710fced45c033606cebe31e88f2e2834", null ],
+    [ "removeAllBuffers", "class_kyanite_1_1_audio_buffer_group.html#ac19e12c95b7688bbb68b6b576f3a2091", null ],
+    [ "removeBuffer", "class_kyanite_1_1_audio_buffer_group.html#a2b26c44ee7cefb0bb7883e5c144ecb7f", null ],
+    [ "removeBuffers", "class_kyanite_1_1_audio_buffer_group.html#a67bf06dc9fedd17bdb792fb7261ebd18", null ],
     [ "unloadBuffer", "class_kyanite_1_1_audio_buffer_group.html#a19295cae4f68dfa635ebeab8e94d4bdd", null ],
     [ "unloadBuffers", "class_kyanite_1_1_audio_buffer_group.html#af2274079220eb65d45e04a9e0d0836f4", null ],
+    [ "AudioManager", "class_kyanite_1_1_audio_buffer_group.html#a85edaa7e5c3ae68dabadd5373890591e", null ],
+    [ "std::shared_ptr< AudioBufferGroup >", "class_kyanite_1_1_audio_buffer_group.html#a67bae24905ebd117c00b6bbba4ff0d35", null ],
     [ "m_BufferGroupLoaded", "class_kyanite_1_1_audio_buffer_group.html#a9887e722752972bd17015bb7940ac091", null ],
     [ "m_Buffers", "class_kyanite_1_1_audio_buffer_group.html#a3a78c57fbf01e62ea1c99cfb8ffbb432", null ],
     [ "m_GroupName", "class_kyanite_1_1_audio_buffer_group.html#adb249c6ddf58bbec90b38c6f9a4adf2b", null ],
-    [ "m_ParentAudioManager", "class_kyanite_1_1_audio_buffer_group.html#a2beabd9828f8b8cafcf5ca4331d85e18", null ]
+    [ "m_ParentAudioManager", "class_kyanite_1_1_audio_buffer_group.html#a2beabd9828f8b8cafcf5ca4331d85e18", null ],
+    [ "m_ParentAudioManagerValid", "class_kyanite_1_1_audio_buffer_group.html#a96232d6086cb24352d9f6f5968a7a119", null ],
+    [ "m_PathPrefix", "class_kyanite_1_1_audio_buffer_group.html#a83309a025ea331ce2ec2d29fb7a0d8c8", null ]
 ];

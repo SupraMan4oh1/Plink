@@ -1,6 +1,8 @@
 #pragma once
 
 #include <climits>
+#include <string>
+
 #include "AL/alure.h"
 
 namespace Kyanite
@@ -33,10 +35,14 @@ namespace Kyanite
 		~AudioManager();
 
 		/** @brief Stop playing and reset the buffer in any AudioSource using the named buffer in the specified AudioBufferGroup.
+
 		@param [in] buffer_group_name Name of the buffer group which contains the named buffer. 
 		@param [in] buffer_name Name of the buffer to be purged. 
-		@see purgeBufferGroupFromSources */
+		@see purgeBufferGroupFromSources(std::string const &buffer_group_name) */
 		void purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name);
+
+		/** @overload purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name) */
+		void purgeBufferFromSources(AudioBufferGroup const &buffer_group, std::string const &buffer_name);
 
 		/** @brief Stop playing and reset the buffer in any AudioSource using any buffer in the specified AudioBufferGroup.
 
@@ -44,9 +50,11 @@ namespace Kyanite
 		One potential scenario is when changing levels and each level uses a seperate AudioBufferGroup. Once the new group is loaded, it may 
 		be desirable to force all the sources in the group for the previous level to stop playing immediately if they haven't already.
 
-		@param [in] buffer_group_name Name of the buffer group which needs its buffers purged from audio sources.
-		*/
+		@param [in] buffer_group_name Name of the buffer group which needs its buffers purged from audio sources. */
 		void purgeBufferGroupFromSources(std::string const &buffer_group_name);
+
+		/** @overload purgeBufferGroupFromSources(std::string const &buffer_group_name) */
+		void purgeBufferGroupFromSources(AudioBufferGroup const &buffer_group);
 
 	protected:
 

@@ -81,6 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -124,7 +125,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -137,20 +138,20 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>addFile()
-: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a6a2497099fee7c9a859bc89ee8d4027b">Kyanite::AudioBufferGroup</a>
+<li>addBuffer()
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a1d2be7ec9a366a712df0b0a50720a3cf">Kyanite::AudioBufferGroup</a>
 </li>
-<li>addFiles()
-: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#aaddef0dbfa54a5d91ffed53805b1e67c">Kyanite::AudioBufferGroup</a>
+<li>addBuffers()
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a944244ae8c0756f01572648a4448b2df">Kyanite::AudioBufferGroup</a>
 </li>
 <li>Application()
 : <a class="el" href="class_application.html#a2d436f278d92ca47f8e6d87c27566c94">Application</a>
 </li>
 <li>AudioBufferGroup()
-: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a4a643a451f57311b0d5a0c7ea3b75c99">Kyanite::AudioBufferGroup</a>
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a6ce5f97571488857e53b7eeebecb2feb">Kyanite::AudioBufferGroup</a>
 </li>
 <li>AudioManager()
-: <a class="el" href="class_kyanite_1_1_audio_manager.html#ab5701ce8a93fa6be3f5bc6967f3455db">Kyanite::AudioManager</a>
+: <a class="el" href="class_kyanite_1_1_audio_manager.html#ae59d8605c1d706e7bab47d4e8f900d09">Kyanite::AudioManager</a>
 </li>
 <li>AudioSource()
 : <a class="el" href="class_kyanite_1_1_audio_source.html#a58ad52e32668f022d45fa6239e56a85c">Kyanite::AudioSource</a>
@@ -274,6 +275,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>operator=()
 : <a class="el" href="class_application.html#a88ec18cd8283e3217222a2ebaeffbe1f">Application</a>
 , <a class="el" href="class_base_application.html#a380a2ba7fcf6048868848c00efde7301">BaseApplication</a>
+, <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a710fced45c033606cebe31e88f2e2834">Kyanite::AudioBufferGroup</a>
 , <a class="el" href="class_application.html#a7d42873596166bf57c02069089914f1e">Application</a>
 </li>
 </ul>
@@ -293,6 +295,15 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>removeAllBuffers()
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#ac19e12c95b7688bbb68b6b576f3a2091">Kyanite::AudioBufferGroup</a>
+</li>
+<li>removeBuffer()
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a2b26c44ee7cefb0bb7883e5c144ecb7f">Kyanite::AudioBufferGroup</a>
+</li>
+<li>removeBuffers()
+: <a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a67bf06dc9fedd17bdb792fb7261ebd18">Kyanite::AudioBufferGroup</a>
+</li>
 <li>root()
 : <a class="el" href="class_application.html#a6d1553dd2942b1dfefc18b2d54b29940">Application</a>
 </li>
@@ -365,7 +376,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Dec 18 2013 04:29:19 for OgreGame by
+    <li class="footer">Generated on Wed Dec 18 2013 07:14:41 for OgreGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
