@@ -43,10 +43,10 @@
       <Filter>Header Files\Kyanite</Filter>
     </ClInclude>
     <ClInclude Include="AudioBufferGroup.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Kyanite</Filter>
     </ClInclude>
     <ClInclude Include="AudioSource.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Kyanite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,10 +66,10 @@
       <Filter>Source Files\Kyanite</Filter>
     </ClCompile>
     <ClCompile Include="AudioBufferGroup.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Kyanite</Filter>
     </ClCompile>
     <ClCompile Include="AudioSource.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Kyanite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

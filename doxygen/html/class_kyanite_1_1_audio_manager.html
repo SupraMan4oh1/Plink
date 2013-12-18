@@ -132,6 +132,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab5701ce8a93fa6be3f5bc6967f3455db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad94dc46723c6d7cf8c81fc3772a842aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#ad94dc46723c6d7cf8c81fc3772a842aa">~AudioManager</a> ()</td></tr>
 <tr class="separator:ad94dc46723c6d7cf8c81fc3772a842aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa900764d6d6251bea1eca5e61683efb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#aa900764d6d6251bea1eca5e61683efb3">purgeBufferFromSources</a> (std::string const &amp;buffer_group_name, std::string const &amp;buffer_name)</td></tr>
+<tr class="memdesc:aa900764d6d6251bea1eca5e61683efb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing and reset the buffer in any <a class="el" href="class_kyanite_1_1_audio_source.html" title="Audio source. ">AudioSource</a> using the named buffer in the specified <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>.  <a href="#aa900764d6d6251bea1eca5e61683efb3">More...</a><br/></td></tr>
+<tr class="separator:aa900764d6d6251bea1eca5e61683efb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad353d90c3ec5928be32f938d7953b2eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#ad353d90c3ec5928be32f938d7953b2eb">purgeBufferGroupFromSources</a> (std::string const &amp;buffer_group_name)</td></tr>
+<tr class="memdesc:ad353d90c3ec5928be32f938d7953b2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing and reset the buffer in any <a class="el" href="class_kyanite_1_1_audio_source.html" title="Audio source. ">AudioSource</a> using any buffer in the specified <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>.  <a href="#ad353d90c3ec5928be32f938d7953b2eb">More...</a><br/></td></tr>
+<tr class="separator:ad353d90c3ec5928be32f938d7953b2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -160,7 +166,7 @@ Private Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the audio system and all its components. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00013">13</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00012">12</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae59d8605c1d706e7bab47d4e8f900d09"></a>
 <div class="memitem">
@@ -177,7 +183,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Create the audio manager on the default device, with default attributes for the 'ALContext'. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00011">11</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00014">14</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +251,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00058">58</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00061">61</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -262,7 +268,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00081">81</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00084">84</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +298,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 <p>Calculates the maximum number of concurrent audio sources that are supported. </p>
 <dl class="section return"><dt>Returns</dt><dd>The maximum number of concurrent audio sources allowed, as declared as supported by the audio library, or by <code>MAX_AUDIO_SOURCES</code> declared in <code><a class="el" href="_kyanite_constants_8h.html" title="Constants used within the Kyanite library. ">KyaniteConstants.h</a></code>, whichever is smaller. The reason for this is that some audio libs report an erroneously high number of sources, but will fail to function properly before the reported limit is actually reached. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00092">92</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00095">95</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -321,7 +327,68 @@ The default value for all context attributes is INT_MAX, as this value is used a
 <p>Causes the audio manager to enter a failure state where it will continue to function as if everything was normal, but the audio system is not actually active. </p>
 <p>The failure state functionality is useful for when encountering audio errors that cannot be overcome, but the rest of the program should be able to continue without audio. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00114">114</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8cpp_source.html#l00117">117</a> of file <a class="el" href="_audio_manager_8cpp_source.html">AudioManager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa900764d6d6251bea1eca5e61683efb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kyanite::AudioManager::purgeBufferFromSources </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>buffer_group_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>buffer_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop playing and reset the buffer in any <a class="el" href="class_kyanite_1_1_audio_source.html" title="Audio source. ">AudioSource</a> using the named buffer in the specified <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer_group_name</td><td>Name of the buffer group which contains the named buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer_name</td><td>Name of the buffer to be purged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_kyanite_1_1_audio_manager.html#ad353d90c3ec5928be32f938d7953b2eb" title="Stop playing and reset the buffer in any AudioSource using any buffer in the specified AudioBufferGro...">purgeBufferGroupFromSources</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad353d90c3ec5928be32f938d7953b2eb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kyanite::AudioManager::purgeBufferGroupFromSources </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>buffer_group_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop playing and reset the buffer in any <a class="el" href="class_kyanite_1_1_audio_source.html" title="Audio source. ">AudioSource</a> using any buffer in the specified <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>. </p>
+<p>Sometimes it's desirable to ensure that any audio sources playing a set of buffers are immediately stopped and dereference the buffer. One potential scenario is when changing levels and each level uses a seperate <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>. Once the new group is loaded, it may be desirable to force all the sources in the group for the previous level to stop playing immediately if they haven't already.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffer_group_name</td><td>Name of the buffer group which needs its buffers purged from audio sources. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -346,7 +413,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The audio context for this manager. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00039">39</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00054">54</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +437,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The device managed by this manager. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00038">38</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00053">53</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +461,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The max number of concurrent audio sources supported. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00041">41</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00056">56</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -408,7 +475,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_kyanite.html">Kyanite</a></li><li class="navelem"><a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a></li>
-    <li class="footer">Generated on Tue Dec 17 2013 23:08:40 for OgreGame by
+    <li class="footer">Generated on Wed Dec 18 2013 04:29:18 for OgreGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

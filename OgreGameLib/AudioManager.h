@@ -3,11 +3,10 @@
 #include <climits>
 #include "AL/alure.h"
 
-#include "AudioBufferGroup.h"
-#include "AudioSource.h"
-
 namespace Kyanite
 {
+	class AudioBufferGroup;
+	class AudioSource;
 
 	/** @brief Manages the audio system and all its components. */
 	class AudioManager
@@ -32,6 +31,22 @@ namespace Kyanite
 		AudioManager(ALCchar *device_name, ALCint mono_sources_hint = INT_MAX, ALCint stereo_sources_hint = INT_MAX,
 		             ALCint frequency = INT_MAX, ALCint refresh = INT_MAX, ALCint sync = INT_MAX);
 		~AudioManager();
+
+		/** @brief Stop playing and reset the buffer in any AudioSource using the named buffer in the specified AudioBufferGroup.
+		@param [in] buffer_group_name Name of the buffer group which contains the named buffer. 
+		@param [in] buffer_name Name of the buffer to be purged. 
+		@see purgeBufferGroupFromSources */
+		void purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name);
+
+		/** @brief Stop playing and reset the buffer in any AudioSource using any buffer in the specified AudioBufferGroup.
+
+		Sometimes it's desirable to ensure that any audio sources playing a set of buffers are immediately stopped and dereference the buffer.
+		One potential scenario is when changing levels and each level uses a seperate AudioBufferGroup. Once the new group is loaded, it may 
+		be desirable to force all the sources in the group for the previous level to stop playing immediately if they haven't already.
+
+		@param [in] buffer_group_name Name of the buffer group which needs its buffers purged from audio sources.
+		*/
+		void purgeBufferGroupFromSources(std::string const &buffer_group_name);
 
 	protected:
 

@@ -1,12 +1,15 @@
 #include "AudioBufferGroup.h"
+
 #include "AppUtility.h"
+#include "AudioManager.h"
 
 #include <boost/filesystem.hpp>
 
 using namespace Kyanite;
 
-AudioBufferGroup::AudioBufferGroup(std::string group_name, std::vector<std::string> const &file_paths, bool load_files) 
-	: m_GroupName(std::move(group_name))
+AudioBufferGroup::AudioBufferGroup(AudioManager const * const audio_manager, std::string group_name, std::string path_prefix, 
+	std::vector<std::string> const &file_paths, bool load_files) 
+	: m_ParentAudioManager(audio_manager), m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
 {
 	addFiles(file_paths);
 
@@ -20,7 +23,7 @@ AudioBufferGroup::~AudioBufferGroup()
 {
 }
 
-ALuint AudioBufferGroup::getBuffer(std::string const &file_path)
+ALuint AudioBufferGroup::getBuffer(std::string const &file_path) const
 {
 	auto found_buffer = m_Buffers.find(file_path);
 
@@ -34,11 +37,13 @@ ALuint AudioBufferGroup::getBuffer(std::string const &file_path)
 
 bool AudioBufferGroup::addFile(std::string const &file_path)
 {
+	std::string full_file_path(m_PathPrefix + file_path);
+
 	// Don't attempt to load the file if it doesn't exist or isn't a file.
-	if (!boost::filesystem::exists(file_path) || !boost::filesystem::is_regular_file(file_path))
+	if (!boost::filesystem::exists(full_file_path) || !boost::filesystem::is_regular_file(full_file_path))
 	{
 		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Cannot add the audio file at '%s' to the group; not an actual file.",
-			Ogre::LML_CRITICAL, false, m_GroupName.c_str(), file_path.c_str());
+			Ogre::LML_CRITICAL, false, m_GroupName.c_str(), full_file_path.c_str());
 
 		return false;
 	}
@@ -51,7 +56,7 @@ bool AudioBufferGroup::addFile(std::string const &file_path)
 	if (!emplace_ret.second)
 	{
 		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- The audio file at '%s' is already part of this group; skipping.",
-			Ogre::LML_NORMAL, true, m_GroupName.c_str(), file_path.c_str());
+			Ogre::LML_NORMAL, true, m_GroupName.c_str(), full_file_path.c_str());
 
 		return false;
 	}
@@ -82,21 +87,25 @@ bool AudioBufferGroup::loadBuffer(boost::unordered_map<std::string, ALuint>::ite
 	// Skip entirely if the buffer is already loaded.
 	if (buffer_to_load->second != 0)
 	{
-		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- The buffer for the audio file at '%s' is already loaded; skipping.",
+		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- The buffer '%s' is already loaded; skipping.",
 			Ogre::LML_NORMAL, true, m_GroupName.c_str(), buffer_to_load->first.c_str());
 
 		return false;
 	}
 
 	// Verify that the file still exists if the caller wants the additional error checking.
-	if (verify_files_exist 
-		&& (!boost::filesystem::exists(buffer_to_load->first) || !boost::filesystem::is_regular_file(buffer_to_load->first)))
+	if (verify_files_exist)
 	{
-		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Cannot load the audio file at '%s'; not an actual file. This file \
-								was either deleted or changed since it was added to the buffer group.", 
-								Ogre::LML_CRITICAL, false, m_GroupName.c_str(), buffer_to_load->first.c_str());
+		std::string full_file_path(m_PathPrefix + buffer_to_load->first);
 
-		return false;
+		if (!boost::filesystem::exists(full_file_path) || !boost::filesystem::is_regular_file(full_file_path))
+		{
+			AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Cannot load the audio file at '%s'; not an actual file. This file \
+									was either deleted or changed since it was added to the buffer group.",
+									Ogre::LML_CRITICAL, false, m_GroupName.c_str(), full_file_path.c_str());
+
+			return false;
+		}
 	}
 
 	ALuint new_buffer = alureCreateBufferFromFile(buffer_to_load->first.c_str());
@@ -104,7 +113,7 @@ bool AudioBufferGroup::loadBuffer(boost::unordered_map<std::string, ALuint>::ite
 	// An error occured while loading the file into the buffer.
 	if (new_buffer == AL_NONE)
 	{
-		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Encountered error: `%s` when attempting to load the audio file at '%s'.",
+		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Encountered error: `%s` when attempting to load the audio buffer '%s'.",
 			Ogre::LogMessageLevel::LML_CRITICAL, false, m_GroupName.c_str(), alureGetErrorString(), buffer_to_load->first.c_str());
 
 		return false;
@@ -140,7 +149,7 @@ bool AudioBufferGroup::unloadBuffer(boost::unordered_map<std::string, ALuint>::i
 		}
 		else
 		{
-			AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Couldn't unload the buffer associated with the audio file at '%s'; \
+			AppUtility::fLogMessage("AudioBufferGroup: '%s' -- Couldn't unload the buffer '%s'; \
 									buffer is still in active use by sources and cannot be unloaded.",
 									Ogre::LogMessageLevel::LML_CRITICAL, false, m_GroupName.c_str(), 
 									alureGetErrorString(), buffer_to_load->first.c_str());

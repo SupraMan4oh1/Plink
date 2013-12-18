@@ -6,6 +6,9 @@
 #include "KyaniteConstants.h"
 #include "AppUtility.h"
 
+#include "AudioBufferGroup.h"
+#include "AudioSource.h"
+
 using namespace Kyanite;
 
 AudioManager::AudioManager()

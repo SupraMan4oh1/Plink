@@ -123,13 +123,14 @@ $(document).ready(function(){initNavTree('class_kyanite_1_1_audio_buffer_group.h
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7ef8f55e220111c8a5264935d939e2b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a7ef8f55e220111c8a5264935d939e2b2">AudioBufferGroup</a> (std::string group_name, std::vector&lt; std::string &gt; const &amp;file_paths, bool load_files=false)</td></tr>
-<tr class="separator:a7ef8f55e220111c8a5264935d939e2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a643a451f57311b0d5a0c7ea3b75c99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a4a643a451f57311b0d5a0c7ea3b75c99">AudioBufferGroup</a> (<a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a> const *const audio_manager, std::string group_name, std::vector&lt; std::string &gt; const &amp;file_paths, bool load_files=false)</td></tr>
+<tr class="memdesc:a4a643a451f57311b0d5a0c7ea3b75c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a> with the specified attributes.  <a href="#a4a643a451f57311b0d5a0c7ea3b75c99">More...</a><br/></td></tr>
+<tr class="separator:a4a643a451f57311b0d5a0c7ea3b75c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad33889779bd1744cf1cef2828628fb67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#ad33889779bd1744cf1cef2828628fb67">~AudioBufferGroup</a> ()</td></tr>
 <tr class="separator:ad33889779bd1744cf1cef2828628fb67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4e54a6e254e2e6e88d7ad5e7c7775d2"><td class="memItemLeft" align="right" valign="top">ALuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#af4e54a6e254e2e6e88d7ad5e7c7775d2">getBuffer</a> (std::string const &amp;file_path)</td></tr>
-<tr class="memdesc:af4e54a6e254e2e6e88d7ad5e7c7775d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the buffer with the corresponding file-path.  <a href="#af4e54a6e254e2e6e88d7ad5e7c7775d2">More...</a><br/></td></tr>
-<tr class="separator:af4e54a6e254e2e6e88d7ad5e7c7775d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeacc4f8d93ef45fa518de0c72c5f7a4a"><td class="memItemLeft" align="right" valign="top">ALuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#aeacc4f8d93ef45fa518de0c72c5f7a4a">getBuffer</a> (std::string const &amp;file_path) const </td></tr>
+<tr class="memdesc:aeacc4f8d93ef45fa518de0c72c5f7a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the buffer with the corresponding file-path.  <a href="#aeacc4f8d93ef45fa518de0c72c5f7a4a">More...</a><br/></td></tr>
+<tr class="separator:aeacc4f8d93ef45fa518de0c72c5f7a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2497099fee7c9a859bc89ee8d4027b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a6a2497099fee7c9a859bc89ee8d4027b">addFile</a> (std::string const &amp;file_path)</td></tr>
 <tr class="memdesc:a6a2497099fee7c9a859bc89ee8d4027b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the audio file at the given path to this group.  <a href="#a6a2497099fee7c9a859bc89ee8d4027b">More...</a><br/></td></tr>
 <tr class="separator:a6a2497099fee7c9a859bc89ee8d4027b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +155,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a2beabd9828f8b8cafcf5ca4331d85e18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a> const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a2beabd9828f8b8cafcf5ca4331d85e18">m_ParentAudioManager</a></td></tr>
+<tr class="memdesc:a2beabd9828f8b8cafcf5ca4331d85e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> that spawned this class.  <a href="#a2beabd9828f8b8cafcf5ca4331d85e18">More...</a><br/></td></tr>
+<tr class="separator:a2beabd9828f8b8cafcf5ca4331d85e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb249c6ddf58bbec90b38c6f9a4adf2b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#adb249c6ddf58bbec90b38c6f9a4adf2b">m_GroupName</a></td></tr>
 <tr class="memdesc:adb249c6ddf58bbec90b38c6f9a4adf2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the buffer group.  <a href="#adb249c6ddf58bbec90b38c6f9a4adf2b">More...</a><br/></td></tr>
 <tr class="separator:adb249c6ddf58bbec90b38c6f9a4adf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,15 +174,21 @@ Protected Attributes</h2></td></tr>
 <p>Manages a group of audio buffers, including controlling access and buffer lifetime. Grouping buffers is useful, because if you need to load a specific sound into a buffer, you usually need to load a set of others along with it. The same goes for unloading and other buffer management.</p>
 <dl class="section note"><dt>Note</dt><dd>The <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a> class lives within the scope of the <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a>. It must be spawned from the <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> and it only remains a valid instance of a buffer group so long as the <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> that spawned it is still valid. This tight coupling is because of the tight coupling between components of the underlying audio system. The <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> maintains the components of the audio system in which buffers are relevant, so buffers and thus the buffer groups only remain relevant as long as those systems are still active. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00022">22</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00025">25</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7ef8f55e220111c8a5264935d939e2b2"></a>
+<a class="anchor" id="a4a643a451f57311b0d5a0c7ea3b75c99"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AudioBufferGroup::AudioBufferGroup </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a> const *const&#160;</td>
+          <td class="paramname"><em>audio_manager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>group_name</em>, </td>
         </tr>
@@ -202,7 +212,18 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00008">8</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Create the <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a> with the specified attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">audio_manager</td><td>The <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> that spawned this instance. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">group_name</td><td>The name of this buffer group. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_paths</td><td>The initial audio file paths to create this buffer group with. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">load_files</td><td>Should the buffers be loaded on construction? </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00010">10</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +240,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00019">19</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00021">21</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -248,8 +269,9 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>'true' if file-path was valid, 'false' if it wasn't. If this group is already meant to be loaded, the return value changes to 'true' if the file-path was valid and the corresponding buffer successfully loaded; 'false' if either fails. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#aaddef0dbfa54a5d91ffed53805b1e67c" title="Add the audio files at the given paths to this group. ">addFiles</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00035">35</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00037">37</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,12 +299,13 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of valid file-paths added to the group (and buffers loaded if this group is already meant to be loaded). </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_kyanite_1_1_audio_buffer_group.html#a6a2497099fee7c9a859bc89ee8d4027b" title="Add the audio file at the given path to this group. ">addFile</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00068">68</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00070">70</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af4e54a6e254e2e6e88d7ad5e7c7775d2"></a>
+<a class="anchor" id="aeacc4f8d93ef45fa518de0c72c5f7a4a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -291,7 +314,7 @@ Protected Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>file_path</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -305,7 +328,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ID of the matching buffer, or 0 if not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00023">23</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00025">25</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +375,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the buffer was loaded successfully, 'false' if it failed to load. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00080">80</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00082">82</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +403,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of buffers that were successfully loaded. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00118">118</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00120">120</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -415,7 +438,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the buffer unloaded successfully, 'false' if it failed and is still loaded. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00131">131</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00133">133</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +459,7 @@ Protected Attributes</h2></td></tr>
 <p>Unloads all buffers. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of buffers that failed to unload. </dd></dl>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00155">155</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8cpp_source.html#l00157">157</a> of file <a class="el" href="_audio_buffer_group_8cpp_source.html">AudioBufferGroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -461,7 +484,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Is this buffer group currently meant to be loaded or unloaded? </p>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00074">74</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00086">86</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
 
 </div>
 </div>
@@ -485,7 +508,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Map of the file names to the buffer IDs, for all the buffers in this group. </p>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00073">73</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00085">85</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +532,31 @@ Protected Attributes</h2></td></tr>
 
 <p>Name of the buffer group. </p>
 
-<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00072">72</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00084">84</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2beabd9828f8b8cafcf5ca4331d85e18"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a> const* Kyanite::AudioBufferGroup::m_ParentAudioManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_kyanite_1_1_audio_manager.html" title="Manages the audio system and all its components. ">AudioManager</a> that spawned this class. </p>
+
+<p>Definition at line <a class="el" href="_audio_buffer_group_8h_source.html#l00083">83</a> of file <a class="el" href="_audio_buffer_group_8h_source.html">AudioBufferGroup.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +570,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_kyanite.html">Kyanite</a></li><li class="navelem"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html">AudioBufferGroup</a></li>
-    <li class="footer">Generated on Tue Dec 17 2013 23:08:40 for OgreGame by
+    <li class="footer">Generated on Wed Dec 18 2013 04:29:18 for OgreGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
