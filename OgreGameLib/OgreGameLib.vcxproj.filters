@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Kyanite">
+      <UniqueIdentifier>{335e0657-6c05-4bed-b9a8-942f312380ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Kyanite">
+      <UniqueIdentifier>{875395b0-15df-4d14-b8e0-589470502458}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header Files\Kyanite</Filter>
+    </ClInclude>
+    <ClInclude Include="AppUtility.h">
+      <Filter>Header Files\Kyanite</Filter>
+    </ClInclude>
+    <ClInclude Include="KyaniteConstants.h">
+      <Filter>Header Files\Kyanite</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioBufferGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Kyanite</Filter>
+    </ClCompile>
+    <ClCompile Include="AppUtility.cpp">
+      <Filter>Source Files\Kyanite</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioBufferGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
