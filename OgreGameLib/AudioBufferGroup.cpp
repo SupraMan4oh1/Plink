@@ -7,8 +7,8 @@
 
 using namespace Kyanite;
 
-AudioBufferGroup::AudioBufferGroup(AudioManager const * const audio_manager, std::string group_name, std::string path_prefix, 
-	std::vector<std::string> const &file_paths, bool load_files) : m_ParentAudioManager(audio_manager), m_ParentAudioManagerValid(true), 
+AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix, 
+	std::vector<std::string> const &file_paths, bool load_files) : m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(true), 
 	m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
 {
 	addBuffers(file_paths);
@@ -21,6 +21,11 @@ AudioBufferGroup::AudioBufferGroup(AudioManager const * const audio_manager, std
 
 AudioBufferGroup::~AudioBufferGroup()
 {
+	if (m_IsParentAudioManagerValid)
+	{
+		m_ParentAudioManager->purgeBufferGroupFromSources(*this);
+		unloadBuffers();
+	}
 }
 
 ALuint AudioBufferGroup::getBuffer(std::string const &file_path) const
@@ -35,8 +40,25 @@ ALuint AudioBufferGroup::getBuffer(std::string const &file_path) const
 	return 0;
 }
 
+boost::unordered_map<std::string, ALuint>::iterator AudioBufferGroup::getIteratorToBuffer(std::string const &file_path)
+{
+	return m_Buffers.find(file_path);
+}
+
+boost::unordered_map<std::string, ALuint>::const_iterator AudioBufferGroup::getIteratorToBuffer(std::string const &file_path) const
+{
+	return m_Buffers.find(file_path);
+}
+
+
 bool AudioBufferGroup::addBuffer(std::string const &file_path)
 {
+	// The AudioManager that spawned this instance is no longer valid.
+	if (!m_IsParentAudioManagerValid)
+	{
+		return false;
+	}
+
 	std::string full_file_path(m_PathPrefix + file_path);
 
 	// Don't attempt to load the file if it doesn't exist or isn't a file.
@@ -82,13 +104,44 @@ int AudioBufferGroup::addBuffers(std::vector<std::string> const &file_paths)
 	return successful_add_count;
 }
 
+void AudioBufferGroup::removeBuffer(std::string const &file_path)
+{
+	if (m_IsParentAudioManagerValid)
+	{
+		auto buffer_iter = getIteratorToBuffer(file_path);
+
+		if (buffer_iter != m_Buffers.end())
+		{
+			m_ParentAudioManager->purgeBufferFromSources(*this, buffer_iter->second);
+			unloadBuffer(buffer_iter);
+			m_Buffers.erase(buffer_iter);
+		}
+	}
+}
+
+void AudioBufferGroup::removeBuffers(std::vector<std::string> const &file_paths)
+{
+	for (int i = 0; i < file_paths.size(); ++i)
+	{
+		removeBuffer(file_paths[i]);
+	}
+}
+
+void AudioBufferGroup::removeAllBuffers(void)
+{
+	if (m_IsParentAudioManagerValid)
+	{
+		m_ParentAudioManager->purgeBufferGroupFromSources(*this);
+		unloadBuffers();
+		m_Buffers.clear();
+	}
+}
+
 bool AudioBufferGroup::loadBuffer(boost::unordered_map<std::string, ALuint>::iterator &buffer_to_load, bool verify_files_exist)
 {
-	// The AudioManager that spawned this instance is no longer valid and we're forced to fail silently.
-	if (!m_ParentAudioManager)
+	// The AudioManager that spawned this instance is no longer valid.
+	if (!m_IsParentAudioManagerValid)
 	{
-		AppUtility::fLogMessage("AudioBufferGroup: '%s' -- The parent AudioManager of this buffer group is no longer valid. \
-								It is no longer possible to load buffers.", Ogre::LML_NORMAL, false, m_GroupName.c_str());
 		return false;
 	}
 
@@ -147,6 +200,12 @@ int AudioBufferGroup::loadBuffers(bool verify_files_exist)
 
 bool AudioBufferGroup::unloadBuffer(boost::unordered_map<std::string, ALuint>::iterator &buffer_to_load)
 {
+	// The AudioManager that spawned this instance is no longer valid.
+	if (!m_IsParentAudioManagerValid)
+	{
+		return false;
+	}
+
 	if (buffer_to_load->second != 0)
 	{
 		alDeleteBuffers(1, &buffer_to_load->second);

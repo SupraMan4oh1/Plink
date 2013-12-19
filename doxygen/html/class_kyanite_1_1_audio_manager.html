@@ -137,6 +137,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa900764d6d6251bea1eca5e61683efb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15ba9edd7aadbc47795f62e77751d0a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#a15ba9edd7aadbc47795f62e77751d0a3">purgeBufferFromSources</a> (<a class="el" href="class_kyanite_1_1_audio_buffer_group.html">AudioBufferGroup</a> const &amp;buffer_group, std::string const &amp;buffer_name)</td></tr>
 <tr class="separator:a15ba9edd7aadbc47795f62e77751d0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3881322c6a0c2362e4eeffe9bb892d60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#a3881322c6a0c2362e4eeffe9bb892d60">purgeBufferFromSources</a> (<a class="el" href="class_kyanite_1_1_audio_buffer_group.html">AudioBufferGroup</a> const &amp;buffer_group, ALuint buffer_id)</td></tr>
+<tr class="separator:a3881322c6a0c2362e4eeffe9bb892d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad353d90c3ec5928be32f938d7953b2eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_kyanite_1_1_audio_manager.html#ad353d90c3ec5928be32f938d7953b2eb">purgeBufferGroupFromSources</a> (std::string const &amp;buffer_group_name)</td></tr>
 <tr class="memdesc:ad353d90c3ec5928be32f938d7953b2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop playing and reset the buffer in any <a class="el" href="class_kyanite_1_1_audio_source.html" title="Audio source. ">AudioSource</a> using any buffer in the specified <a class="el" href="class_kyanite_1_1_audio_buffer_group.html" title="Group of audio buffers. ">AudioBufferGroup</a>.  <a href="#ad353d90c3ec5928be32f938d7953b2eb">More...</a><br/></td></tr>
 <tr class="separator:ad353d90c3ec5928be32f938d7953b2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,7 +172,7 @@ Private Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the audio system and all its components. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00012">12</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00014">14</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae59d8605c1d706e7bab47d4e8f900d09"></a>
 <div class="memitem">
@@ -398,6 +400,33 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 </div>
 </div>
+<a class="anchor" id="a3881322c6a0c2362e4eeffe9bb892d60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kyanite::AudioManager::purgeBufferFromSources </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_kyanite_1_1_audio_buffer_group.html">AudioBufferGroup</a> const &amp;&#160;</td>
+          <td class="paramname"><em>buffer_group</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALuint&#160;</td>
+          <td class="paramname"><em>buffer_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p>
+
+</div>
+</div>
 <a class="anchor" id="ad353d90c3ec5928be32f938d7953b2eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -461,7 +490,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The audio context for this manager. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00060">60</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00065">65</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -485,7 +514,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The device managed by this manager. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00059">59</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00064">64</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -509,7 +538,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 
 <p>The max number of concurrent audio sources supported. </p>
 
-<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00062">62</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
+<p>Definition at line <a class="el" href="_audio_manager_8h_source.html#l00067">67</a> of file <a class="el" href="_audio_manager_8h_source.html">AudioManager.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +552,7 @@ The default value for all context attributes is INT_MAX, as this value is used a
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_kyanite.html">Kyanite</a></li><li class="navelem"><a class="el" href="class_kyanite_1_1_audio_manager.html">AudioManager</a></li>
-    <li class="footer">Generated on Wed Dec 18 2013 07:14:41 for OgreGame by
+    <li class="footer">Generated on Wed Dec 18 2013 17:13:22 for OgreGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

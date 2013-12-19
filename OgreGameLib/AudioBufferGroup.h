@@ -86,13 +86,21 @@ namespace Kyanite
 
 	protected:
 
-		AudioManager const *m_ParentAudioManager;				//!< @brief The AudioManager that spawned this class.
-		bool m_ParentAudioManagerValid;							//!< @brief Is the AudioManager that spawned this instance still valid?
+		AudioManager *m_ParentAudioManager;						//!< @brief The AudioManager that spawned this class.
+		bool m_IsParentAudioManagerValid;						//!< @brief Is the AudioManager that spawned this instance still valid?
 
 		std::string m_GroupName;								//!< @brief Name of the buffer group.
 		std::string m_PathPrefix;								//!< @brief Prefix added to every buffer name to create the full file-path.
 		boost::unordered_map<std::string, ALuint> m_Buffers;	//!< @brief Map of the file names to the buffer IDs, for all the buffers in this group.
 		bool m_BufferGroupLoaded;								//!< @brief Is this buffer group currently meant to be loaded or unloaded?
+
+		/** @brief Get an iterator to the buffer with the corresponding file-path.
+		@param [in] file_path The file-path associated with the buffer.
+		@returns An iterator to the buffer. */
+		boost::unordered_map<std::string, ALuint>::iterator getIteratorToBuffer(std::string const &file_path);
+
+		/** @overload getIteratorToBuffer(std::string const &file_path) */
+		boost::unordered_map<std::string, ALuint>::const_iterator getIteratorToBuffer(std::string const &file_path) const;
 
 		/** @brief Create and load the buffer pointed to by the given buffer-map iterator. 
 		@details Only loads the buffer if it is not yet loaded.
@@ -115,7 +123,7 @@ namespace Kyanite
 		@param [in] group_name The name of this buffer group.
 		@param [in] file_paths The initial audio file paths to create this buffer group with.
 		@param [in] load_files Should the buffers be loaded on construction? */
-		AudioBufferGroup(AudioManager const * const audio_manager, std::string group_name, std::string path_prefix,
+		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix,
 			std::vector<std::string> const &file_paths, bool load_files = false);
 		~AudioBufferGroup();
 

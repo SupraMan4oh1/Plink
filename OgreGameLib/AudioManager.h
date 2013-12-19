@@ -44,6 +44,9 @@ namespace Kyanite
 		/** @overload purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name) */
 		void purgeBufferFromSources(AudioBufferGroup const &buffer_group, std::string const &buffer_name);
 
+		/** @overload purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name) */
+		void purgeBufferFromSources(AudioBufferGroup const &buffer_group, ALuint buffer_id);
+
 		/** @brief Stop playing and reset the buffer in any AudioSource using any buffer in the specified AudioBufferGroup.
 
 		Sometimes it's desirable to ensure that any audio sources playing a set of buffers are immediately stopped and dereference the buffer.
