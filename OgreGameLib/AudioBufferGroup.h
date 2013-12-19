@@ -125,6 +125,10 @@ namespace Kyanite
 		@param [in] load_files Should the buffers be loaded on construction? */
 		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix,
 			std::vector<std::string> const &file_paths, bool load_files = false);
+
+		/** @overload AudioBufferGroup */
+		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix);
+
 		~AudioBufferGroup();
 
 		AudioBufferGroup(AudioBufferGroup const &source);

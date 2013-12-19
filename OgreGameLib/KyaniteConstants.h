@@ -19,3 +19,5 @@ Even if more concurrent sources are reported by the audio lib as supported, we l
 This is enforced because certain systems may report an erroneously high number of sources, but fail to function properly 
 long before the reported number is reached. */
 static const ALCint MAX_AUDIO_SOURCES = 256;
+
+static const std::string DEFAULT_AUDIO_GROUP_NAME = "ungrouped";	//!< @brief The name of the default AudioBufferGroup that always exists.

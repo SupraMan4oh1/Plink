@@ -92,6 +92,69 @@ AudioManager::~AudioManager()
 	}
 }
 
+AudioBufferGroup &AudioManager::getBufferGroup(std::string const &buffer_group_name, bool create_new_group, bool &group_was_found)
+{
+	auto found_buffer = m_BufferGroups.find(buffer_group_name);
+
+	if (found_buffer != m_BufferGroups.end())
+	{
+		group_was_found = true;
+		return found_buffer->second;
+	}
+	else
+	{
+		group_was_found = false;
+
+		if (create_new_group)
+		{
+			auto new_group = m_BufferGroups.emplace(buffer_group_name, this, buffer_group_name, "").first;
+			return new_group->second;
+		}
+		else
+		{
+			return m_BufferGroups[DEFAULT_AUDIO_GROUP_NAME];
+		}
+	}
+}
+
+AudioBufferGroup &AudioManager::getBufferGroup(std::string const &buffer_group_name, bool create_new_group = true)
+{
+	bool throwaway_temp = false;
+	return getBufferGroup(buffer_group_name, create_new_group, throwaway_temp);
+}
+
+AudioBufferGroup &AudioManager::createBufferGroup(std::string const &buffer_group_name)
+{
+	bool throwaway_temp = false;
+	return getBufferGroup(buffer_group_name, true, throwaway_temp);
+}
+
+void AudioManager::removeBufferGroup(std::string const &buffer_group_name)
+{
+	// The default buffer group should never be deleted as long as this audio manager is active. Instead we'll just empty it 
+	// of all buffers, which effectively is the same result.
+	if (buffer_group_name == DEFAULT_AUDIO_GROUP_NAME)
+	{
+		AudioBufferGroup default_group = getBufferGroup(DEFAULT_AUDIO_GROUP_NAME);
+		default_group.removeAllBuffers();
+	}
+	else
+	{
+		auto group_to_remove = m_BufferGroups.find(buffer_group_name);
+
+		if (group_to_remove != m_BufferGroups.end())
+		{
+			m_BufferGroups.erase(group_to_remove);
+		}
+	}
+}
+
+void AudioManager::removeAllBufferGroups(void)
+{
+	m_BufferGroups.clear();
+	createDefaultBufferGroup();
+}
+
 ALCint AudioManager::calculateMaxSourceCount(void)
 {
 	ALCint attribute_count = 0;
@@ -112,6 +175,16 @@ ALCint AudioManager::calculateMaxSourceCount(void)
 
 	m_MaxSourceCount = m_MaxSourceCount > MAX_AUDIO_SOURCES ? MAX_AUDIO_SOURCES : m_MaxSourceCount;
 	return m_MaxSourceCount;
+}
+
+void AudioManager::createDefaultBufferGroup(void)
+{
+	auto default_buffer = m_BufferGroups.find(DEFAULT_AUDIO_GROUP_NAME);
+
+	if (default_buffer == m_BufferGroups.end())
+	{
+		m_BufferGroups.emplace(DEFAULT_AUDIO_GROUP_NAME, this, DEFAULT_AUDIO_GROUP_NAME, "");
+	}
 }
 
 void AudioManager::enterFailureState(void)

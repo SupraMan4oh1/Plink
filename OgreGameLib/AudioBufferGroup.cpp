@@ -19,6 +19,12 @@ AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::stri
 	}
 }
 
+AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix)
+: m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(true), m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
+{
+
+}
+
 AudioBufferGroup::~AudioBufferGroup()
 {
 	if (m_IsParentAudioManagerValid)
