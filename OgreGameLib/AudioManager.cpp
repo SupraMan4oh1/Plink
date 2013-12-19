@@ -11,7 +11,7 @@
 
 using namespace Kyanite;
 
-AudioManager::AudioManager()
+AudioManager::AudioManager(std::string default_buffer_group_path_prefix) : m_BufferGroupPathPrefix(std::move(default_buffer_group_path_prefix))
 {
 	ALboolean error = alureInitDevice(NULL, NULL);
 
@@ -28,7 +28,12 @@ AudioManager::AudioManager()
 	m_Device = alcGetContextsDevice(m_Context);
 
 	calculateMaxSourceCount();
+	createDefaultBufferGroup();
+
 	AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
+
+
+
 
 	ALuint buffer = alureCreateBufferFromFile("bird.ogg");
 	ALuint source;
@@ -58,10 +63,45 @@ AudioManager::AudioManager()
 	alSourcePlay(source);
 }
 
-AudioManager::AudioManager(ALCchar *device_name, ALCint mono_sources_hint, ALCint stereo_sources_hint, ALCint frequency, ALCint refresh, ALCint sync)
+AudioManager::AudioManager(std::string default_buffer_group_path_prefix, ALCchar const *device_name, 
+	ALCint mono_sources_hint, ALCint stereo_sources_hint, ALCint frequency, ALCint refresh, ALCint sync) 
+	: m_BufferGroupPathPrefix(std::move(default_buffer_group_path_prefix))
 {
-	ALCint attributes[11] = { ALC_MONO_SOURCES, mono_sources_hint, ALC_STEREO_SOURCES, stereo_sources_hint, 
-		ALC_FREQUENCY, frequency, ALC_REFRESH, refresh, ALC_SYNC, sync, 0};
+	ALCint attributes[11];
+
+	int attr_count = 0;
+
+	if (mono_sources_hint != INT_MAX) {
+		attributes[attr_count] = ALC_MONO_SOURCES;
+		attributes[attr_count + 1] = mono_sources_hint;
+		attr_count += 2;
+	}
+
+	if (stereo_sources_hint != INT_MAX) {
+		attributes[attr_count] = ALC_STEREO_SOURCES;
+		attributes[attr_count + 1] = stereo_sources_hint;
+		attr_count += 2;
+	}
+
+	if (frequency != INT_MAX) {
+		attributes[attr_count] = ALC_FREQUENCY;
+		attributes[attr_count + 1] = frequency;
+		attr_count += 2;
+	}
+
+	if (refresh != INT_MAX) {
+		attributes[attr_count] = ALC_REFRESH;
+		attributes[attr_count + 1] = refresh;
+		attr_count += 2;
+	}
+
+	if (sync != INT_MAX) {
+		attributes[attr_count] = ALC_REFRESH;
+		attributes[attr_count + 1] = sync;
+		attr_count += 2;
+	}
+
+	attributes[attr_count] = 0;
 
 	ALboolean error = alureInitDevice(device_name, attributes);
 
@@ -78,6 +118,8 @@ AudioManager::AudioManager(ALCchar *device_name, ALCint mono_sources_hint, ALCin
 	m_Device = alcGetContextsDevice(m_Context);
 
 	calculateMaxSourceCount();
+	createDefaultBufferGroup();
+
 	AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
 }
 
@@ -183,7 +225,7 @@ void AudioManager::createDefaultBufferGroup(void)
 
 	if (default_buffer == m_BufferGroups.end())
 	{
-		m_BufferGroups.emplace(DEFAULT_AUDIO_GROUP_NAME, this, DEFAULT_AUDIO_GROUP_NAME, "");
+		m_BufferGroups.emplace(DEFAULT_AUDIO_GROUP_NAME, this, DEFAULT_AUDIO_GROUP_NAME, m_BufferGroupPathPrefix);
 	}
 }
 

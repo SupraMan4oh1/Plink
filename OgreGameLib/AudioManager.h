@@ -16,8 +16,9 @@ namespace Kyanite
 	{
 	public:
 
-		/** @brief Create the audio manager on the default device, with default attributes for the 'ALContext'. */
-		AudioManager();
+		/** @brief Create the audio manager on the default device, with default attributes for the 'ALContext'. 
+		@param [in] default_buffer_group_path_prefix Default path-prefix for new buffer groups. */
+		AudioManager(std::string default_buffer_group_path_prefix = "");
 
 		/** @brief Create the audio manager on the specified device, and the specified attributes for the `ALContext`.
 
@@ -25,14 +26,16 @@ namespace Kyanite
 		@note The default value for all context attributes is INT_MAX, as this value is used as a flag by the constructor, to use the default value
 		assigned by OpenAL for that attribute.
 
+		@param [in] default_buffer_group_path_prefix Default path-prefix for new buffer groups.
 		@param [in] device_name The name of the device on which the audio context will be created.
 		@param [in] mono_sources_hint A hint indicating how many sources should be capable of supporting mono data.
 		@param [in] stereo_sources_hint A hint indicating how many sources should be capable of supporting stereo data.
 		@param [in] frequency Frequency for the mixing output buffer, in units of Hz.
 		@param [in] refresh Refresh interval rate, in units of Hz.
 		@param [in] sync Flag, indicating a synchronous context. */
-		AudioManager(ALCchar *device_name, ALCint mono_sources_hint = INT_MAX, ALCint stereo_sources_hint = INT_MAX,
-		             ALCint frequency = INT_MAX, ALCint refresh = INT_MAX, ALCint sync = INT_MAX);
+		AudioManager(std::string default_buffer_group_path_prefix, ALCchar const *device_name, 
+			ALCint mono_sources_hint = INT_MAX, ALCint stereo_sources_hint = INT_MAX, 
+			ALCint frequency = INT_MAX, ALCint refresh = INT_MAX, ALCint sync = INT_MAX);
 		~AudioManager();
 
 		/** @brief Get the buffer group with the given name.
@@ -92,10 +95,11 @@ namespace Kyanite
 
 	protected:
 
-		ALCdevice *m_Device;		//!< The device managed by this manager.
-		ALCcontext *m_Context;		//!< The audio context for this manager.
+		std::string m_BufferGroupPathPrefix;	//!< The default path-prefix to use for new buffer groups.
+		ALCdevice *m_Device;					//!< The device managed by this manager.
+		ALCcontext *m_Context;					//!< The audio context for this manager.
 
-		ALCint m_MaxSourceCount;	//!< The max number of concurrent audio sources supported.
+		ALCint m_MaxSourceCount;				//!< The max number of concurrent audio sources supported.
 
 		boost::unordered_map<std::string, AudioBufferGroup> m_BufferGroups;		//!< The audio buffer groups maintained by this manager.
 

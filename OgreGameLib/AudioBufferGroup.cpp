@@ -29,9 +29,56 @@ AudioBufferGroup::~AudioBufferGroup()
 {
 	if (m_IsParentAudioManagerValid)
 	{
-		m_ParentAudioManager->purgeBufferGroupFromSources(*this);
-		unloadBuffers();
+		removeAllBuffers();
 	}
+}
+
+std::string const &AudioBufferGroup::getName(void)
+{
+	return m_GroupName;
+}
+
+void AudioBufferGroup::setPathPrefix(std::string const &path_prefix, bool remove_all_buffers = true)
+{
+	// Same prefix or the AudioManager that spawned this instance is no longer valid, so don't do anything.
+	if (m_PathPrefix == path_prefix || !m_IsParentAudioManagerValid)
+	{
+		return;
+	}
+
+	m_ParentAudioManager->purgeBufferGroupFromSources(*this);
+	m_PathPrefix = path_prefix;
+
+	if (remove_all_buffers)
+	{
+		removeAllBuffers();
+	}
+	else
+	{
+		std::vector<std::string> buffers_to_remove(m_Buffers.size());
+
+		for (auto iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)
+		{
+			std::string full_file_path(m_PathPrefix + iter->first);
+
+			if (!boost::filesystem::exists(full_file_path) || !boost::filesystem::is_regular_file(full_file_path))
+			{
+				buffers_to_remove.push_back(iter->first);
+			}
+		}
+
+		removeBuffers(buffers_to_remove);
+	}
+}
+
+std::string const &AudioBufferGroup::getPathPrefix(void)
+{
+	return m_PathPrefix;
+}
+
+bool AudioBufferGroup::isBufferGroupLoaded(void)
+{
+	return m_IsBufferGroupLoaded;
 }
 
 ALuint AudioBufferGroup::getBuffer(std::string const &file_path) const
@@ -90,7 +137,7 @@ bool AudioBufferGroup::addBuffer(std::string const &file_path)
 	}
 
 	// Automatically load this file if this group is already supposed to be loaded.
-	if (m_BufferGroupLoaded)
+	if (m_IsBufferGroupLoaded)
 	{
 		return loadBuffer(emplace_ret.first);
 	}
@@ -193,7 +240,7 @@ bool AudioBufferGroup::loadBuffer(boost::unordered_map<std::string, ALuint>::ite
 
 int AudioBufferGroup::loadBuffers(bool verify_files_exist)
 {
-	m_BufferGroupLoaded = true;
+	m_IsBufferGroupLoaded = true;
 	int successful_load_count = 0;
 
 	for (auto iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)
@@ -236,7 +283,7 @@ bool AudioBufferGroup::unloadBuffer(boost::unordered_map<std::string, ALuint>::i
 
 int AudioBufferGroup::unloadBuffers(void)
 {
-	m_BufferGroupLoaded = false;
+	m_IsBufferGroupLoaded = false;
 	int failed_unload_count = 0;
 
 	for (auto iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter)

@@ -31,6 +31,30 @@ namespace Kyanite
 		friend class std::shared_ptr<AudioBufferGroup>;
 
 	public:
+		
+		/** @brief Get the name of the buffer group.
+		@returns The name of the buffer group. */
+		std::string const &getName(void);
+
+		/** @brief Changes the path prefix used by this buffer group. 
+
+		Because changing the path prefix changes which files the buffers point to, changing the prefix will cause this buffer 
+		group to purge all its buffers from the audio sources, and then remove buffers from the group that no longer point to 
+		valid audio files (or all if 'remove_all_buffers' is 'true'). As such, it's best this is called before any buffers are 
+		added to the group, or when the buffers would be changed out anyway. 
+		
+		@param [in] path_prefix The new path prefix. 
+		@param [in] remove_all_buffers If 'true' all buffers are simply removed, otherwise buffers that still point to valid files 
+		with the new path prefix, will be kept in the buffer group. */
+		void setPathPrefix(std::string const &path_prefix, bool remove_all_buffers = true);
+
+		/** @brief Get the path prefix. 
+		@returns The path prefix used for this buffer. */
+		std::string const &getPathPrefix(void);
+
+		/** @brief Detect if this buffer group is currently loaded.
+		@returns 'true' if the group is loaded, 'false' if unloaded. */
+		bool isBufferGroupLoaded(void);
 
 		/** @brief Get the ID of the buffer with the corresponding file-path. 
 		@param [in] file_path The file-path associated with the buffer to retrieve the ID of. 
@@ -92,7 +116,7 @@ namespace Kyanite
 		std::string m_GroupName;								//!< @brief Name of the buffer group.
 		std::string m_PathPrefix;								//!< @brief Prefix added to every buffer name to create the full file-path.
 		boost::unordered_map<std::string, ALuint> m_Buffers;	//!< @brief Map of the file names to the buffer IDs, for all the buffers in this group.
-		bool m_BufferGroupLoaded;								//!< @brief Is this buffer group currently meant to be loaded or unloaded?
+		bool m_IsBufferGroupLoaded;								//!< @brief Is this buffer group currently meant to be loaded or unloaded?
 
 		/** @brief Get an iterator to the buffer with the corresponding file-path.
 		@param [in] file_path The file-path associated with the buffer.
