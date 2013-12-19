@@ -14,6 +14,8 @@ namespace Kyanite
 	/** @brief Manages the audio system and all its components. */
 	class AudioManager
 	{
+		friend AudioBufferGroup;
+
 	public:
 
 		/** @brief Create the audio manager on the default device, with default attributes for the 'ALContext'. 
@@ -54,11 +56,12 @@ namespace Kyanite
 		AudioBufferGroup &getBufferGroup(std::string const &buffer_group_name, bool create_new_group = true);
 
 		/** @brief Create a new buffer group with the given name, or return the group with that name if it already exists.
-		@note This function is really just an alias of getBufferGroup with 'create_new_group' set to 'true'; this function 
-		only exists to provide a clear interface on how to create a new buffer group.
 
 		@param [in] buffer_group_name Name of the buffer group.
 		@returns The requested AudioBufferGroup. */
+		AudioBufferGroup &createBufferGroup(std::string const &buffer_group_name, std::string const &path_prefix);
+
+		/** @overload createBufferGroup(std::string const &buffer_group_name, std::string const &path_prefix) */
 		AudioBufferGroup &createBufferGroup(std::string const &buffer_group_name);
 
 		/** @brief Remove the buffer group with the given name. Does nothing if the group with that name doesn't exist.
@@ -115,6 +118,14 @@ namespace Kyanite
 		void createDefaultBufferGroup(void);
 
 	private:
+
+		bool m_IsBufferGroupBeingAdded;			//!< This is a flag used by the validity check for buffer groups.
+
+		/** @brief Used to check the validity of a buffer group.
+		@details To ensure that they're a valid instance, `AudioBufferGroup`s check with their `AudioManager` during creation to see if 
+		they're actually being added to the 'AudioManager', or if they're being constructed outside of the manager. 
+		@returns 'true' if a buffer group is currently being added to the manager, 'false' if not. */
+		bool currentlyAddingBufferGroup(void);
 
 		/** @brief Causes the audio manager to enter a failure state where it will continue to function as if everything was normal, but 
 		the audio system is not actually active.

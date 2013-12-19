@@ -28,13 +28,28 @@ namespace Kyanite
 	class AudioBufferGroup
 	{
 		friend class AudioManager;
-		friend class std::shared_ptr<AudioBufferGroup>;
 
 	public:
-		
+
+		/** @brief Create the AudioBufferGroup with the specified attributes.
+		@param [in] audio_manager The AudioManager that spawned this instance.
+		@param [in] group_name The name of this buffer group.
+		@param [in] file_paths The initial audio file paths to create this buffer group with.
+		@param [in] load_files Should the buffers be loaded on construction? */
+		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix,
+			std::vector<std::string> const &file_paths, bool load_files = false);
+
+		/** @overload AudioBufferGroup */
+		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix);
+
+		~AudioBufferGroup();
+
+		AudioBufferGroup(AudioBufferGroup &&source);
+		AudioBufferGroup& operator=(AudioBufferGroup &&source);
+
 		/** @brief Get the name of the buffer group.
 		@returns The name of the buffer group. */
-		std::string const &getName(void);
+		std::string const &getName(void) const;
 
 		/** @brief Changes the path prefix used by this buffer group. 
 
@@ -142,24 +157,8 @@ namespace Kyanite
 
 	private:
 
-		/** @brief Create the AudioBufferGroup with the specified attributes.
-		@param [in] audio_manager The AudioManager that spawned this instance.
-		@param [in] group_name The name of this buffer group.
-		@param [in] file_paths The initial audio file paths to create this buffer group with.
-		@param [in] load_files Should the buffers be loaded on construction? */
-		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix,
-			std::vector<std::string> const &file_paths, bool load_files = false);
-
-		/** @overload AudioBufferGroup */
-		AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix);
-
-		~AudioBufferGroup();
-
-		AudioBufferGroup(AudioBufferGroup const &source);
-		const AudioBufferGroup& operator=(AudioBufferGroup const &source);
-
-		AudioBufferGroup(AudioBufferGroup &&source);
-		AudioBufferGroup& operator=(AudioBufferGroup &&source);
+		AudioBufferGroup(AudioBufferGroup const &source) = delete;
+		const AudioBufferGroup& operator=(AudioBufferGroup const &source) = delete;
 	};
 
 	/** @brief Shared pointer to an AudioBufferGroup. */

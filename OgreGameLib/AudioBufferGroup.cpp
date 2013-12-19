@@ -8,9 +8,14 @@
 using namespace Kyanite;
 
 AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix, 
-	std::vector<std::string> const &file_paths, bool load_files) : m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(true), 
+	std::vector<std::string> const &file_paths, bool load_files) : m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(false), 
 	m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
 {
+	if (m_ParentAudioManager && m_ParentAudioManager->currentlyAddingBufferGroup())
+	{
+		m_IsParentAudioManagerValid = true;
+	}
+
 	addBuffers(file_paths);
 
 	if (load_files)
@@ -20,9 +25,12 @@ AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::stri
 }
 
 AudioBufferGroup::AudioBufferGroup(AudioManager * const audio_manager, std::string group_name, std::string path_prefix)
-: m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(true), m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
+: m_ParentAudioManager(audio_manager), m_IsParentAudioManagerValid(false), m_GroupName(std::move(group_name)), m_PathPrefix(std::move(path_prefix))
 {
-
+	if (m_ParentAudioManager && m_ParentAudioManager->currentlyAddingBufferGroup())
+	{
+		m_IsParentAudioManagerValid = true;
+	}
 }
 
 AudioBufferGroup::~AudioBufferGroup()
@@ -33,12 +41,49 @@ AudioBufferGroup::~AudioBufferGroup()
 	}
 }
 
-std::string const &AudioBufferGroup::getName(void)
+AudioBufferGroup::AudioBufferGroup(AudioBufferGroup &&source) : m_GroupName(std::move(source.m_GroupName)), 
+	m_PathPrefix(std::move(source.m_PathPrefix)), m_Buffers(std::move(source.m_Buffers))
+{
+	m_ParentAudioManager = source.m_ParentAudioManager;
+	m_IsParentAudioManagerValid = source.m_IsParentAudioManagerValid;
+	m_IsBufferGroupLoaded = source.m_IsBufferGroupLoaded;
+
+	source.m_ParentAudioManager = NULL;
+	source.m_IsParentAudioManagerValid = false;
+	source.m_IsBufferGroupLoaded = false;
+}
+
+AudioBufferGroup& AudioBufferGroup::operator=(AudioBufferGroup &&source)
+{
+	if (this != &source)
+	{
+		if (m_IsParentAudioManagerValid)
+		{
+			removeAllBuffers();
+		}
+
+		m_ParentAudioManager = source.m_ParentAudioManager;
+		m_IsParentAudioManagerValid = source.m_IsParentAudioManagerValid;
+		m_IsBufferGroupLoaded = source.m_IsBufferGroupLoaded;
+
+		m_GroupName = std::move(source.m_GroupName);
+		m_PathPrefix = std::move(source.m_PathPrefix);
+		m_Buffers = std::move(source.m_Buffers);
+
+		source.m_ParentAudioManager = NULL;
+		source.m_IsParentAudioManagerValid = false;
+		source.m_IsBufferGroupLoaded = false;
+	}
+
+	return *this;
+}
+
+std::string const &AudioBufferGroup::getName(void) const
 {
 	return m_GroupName;
 }
 
-void AudioBufferGroup::setPathPrefix(std::string const &path_prefix, bool remove_all_buffers = true)
+void AudioBufferGroup::setPathPrefix(std::string const &path_prefix, bool remove_all_buffers)
 {
 	// Same prefix or the AudioManager that spawned this instance is no longer valid, so don't do anything.
 	if (m_PathPrefix == path_prefix || !m_IsParentAudioManagerValid)
@@ -174,7 +219,7 @@ void AudioBufferGroup::removeBuffer(std::string const &file_path)
 
 void AudioBufferGroup::removeBuffers(std::vector<std::string> const &file_paths)
 {
-	for (int i = 0; i < file_paths.size(); ++i)
+	for (size_t i = 0; i < file_paths.size(); ++i)
 	{
 		removeBuffer(file_paths[i]);
 	}

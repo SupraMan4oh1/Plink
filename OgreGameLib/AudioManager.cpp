@@ -149,26 +149,46 @@ AudioBufferGroup &AudioManager::getBufferGroup(std::string const &buffer_group_n
 
 		if (create_new_group)
 		{
-			auto new_group = m_BufferGroups.emplace(buffer_group_name, this, buffer_group_name, "").first;
+			m_IsBufferGroupBeingAdded = true;
+			auto new_group = m_BufferGroups.emplace(buffer_group_name, AudioBufferGroup(this, buffer_group_name, m_BufferGroupPathPrefix)).first;
+			m_IsBufferGroupBeingAdded = false;
+
 			return new_group->second;
 		}
 		else
 		{
-			return m_BufferGroups[DEFAULT_AUDIO_GROUP_NAME];
+			return m_BufferGroups.find(DEFAULT_AUDIO_GROUP_NAME)->second;
 		}
 	}
 }
 
-AudioBufferGroup &AudioManager::getBufferGroup(std::string const &buffer_group_name, bool create_new_group = true)
+AudioBufferGroup &AudioManager::getBufferGroup(std::string const &buffer_group_name, bool create_new_group)
 {
 	bool throwaway_temp = false;
 	return getBufferGroup(buffer_group_name, create_new_group, throwaway_temp);
 }
 
+AudioBufferGroup &AudioManager::createBufferGroup(std::string const &buffer_group_name, std::string const &path_prefix)
+{
+	auto found_buffer = m_BufferGroups.find(buffer_group_name);
+
+	if (found_buffer == m_BufferGroups.end())
+	{
+		m_IsBufferGroupBeingAdded = true;
+		auto new_group = m_BufferGroups.emplace(buffer_group_name, AudioBufferGroup(this, buffer_group_name, path_prefix)).first;
+		m_IsBufferGroupBeingAdded = false;
+
+		return new_group->second;
+	}
+	else
+	{
+		return found_buffer->second;
+	}
+}
+
 AudioBufferGroup &AudioManager::createBufferGroup(std::string const &buffer_group_name)
 {
-	bool throwaway_temp = false;
-	return getBufferGroup(buffer_group_name, true, throwaway_temp);
+	return createBufferGroup(buffer_group_name, m_BufferGroupPathPrefix);
 }
 
 void AudioManager::removeBufferGroup(std::string const &buffer_group_name)
@@ -177,7 +197,7 @@ void AudioManager::removeBufferGroup(std::string const &buffer_group_name)
 	// of all buffers, which effectively is the same result.
 	if (buffer_group_name == DEFAULT_AUDIO_GROUP_NAME)
 	{
-		AudioBufferGroup default_group = getBufferGroup(DEFAULT_AUDIO_GROUP_NAME);
+		AudioBufferGroup &default_group = getBufferGroup(DEFAULT_AUDIO_GROUP_NAME);
 		default_group.removeAllBuffers();
 	}
 	else
@@ -195,6 +215,31 @@ void AudioManager::removeAllBufferGroups(void)
 {
 	m_BufferGroups.clear();
 	createDefaultBufferGroup();
+}
+
+void AudioManager::purgeBufferFromSources(std::string const &buffer_group_name, std::string const &buffer_name)
+{
+
+}
+
+void AudioManager::purgeBufferFromSources(AudioBufferGroup const &buffer_group, std::string const &buffer_name)
+{
+
+}
+
+void AudioManager::purgeBufferFromSources(AudioBufferGroup const &buffer_group, ALuint buffer_id)
+{
+
+}
+
+void AudioManager::purgeBufferGroupFromSources(std::string const &buffer_group_name)
+{
+
+}
+
+void AudioManager::purgeBufferGroupFromSources(AudioBufferGroup const &buffer_group)
+{
+
 }
 
 ALCint AudioManager::calculateMaxSourceCount(void)
@@ -225,8 +270,15 @@ void AudioManager::createDefaultBufferGroup(void)
 
 	if (default_buffer == m_BufferGroups.end())
 	{
-		m_BufferGroups.emplace(DEFAULT_AUDIO_GROUP_NAME, this, DEFAULT_AUDIO_GROUP_NAME, m_BufferGroupPathPrefix);
+		m_IsBufferGroupBeingAdded = true;
+		m_BufferGroups.emplace(DEFAULT_AUDIO_GROUP_NAME, AudioBufferGroup(this, DEFAULT_AUDIO_GROUP_NAME, m_BufferGroupPathPrefix));
+		m_IsBufferGroupBeingAdded = false;
 	}
+}
+
+bool AudioManager::currentlyAddingBufferGroup(void)
+{
+	return m_IsBufferGroupBeingAdded;
 }
 
 void AudioManager::enterFailureState(void)

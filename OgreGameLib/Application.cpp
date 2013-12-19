@@ -4,6 +4,7 @@
 #include "Globals.h"
 
 #include "AudioManager.h"
+#include "AudioBufferGroup.h"
 
 Application::Application(void)
 {
@@ -24,6 +25,7 @@ Application::Application(void)
 	createScene();
 
 	Kyanite::AudioManager *newAudioManager = new Kyanite::AudioManager;
+	newAudioManager->createBufferGroup("TestBufferGroup");
 }
 
 Application::~Application(void)
