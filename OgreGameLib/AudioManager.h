@@ -6,7 +6,7 @@
 
 #include "AL/alure.h"
 
-namespace Kyanite
+namespace Menura
 {
 	class AudioBufferGroup;
 	class AudioSource;
@@ -17,6 +17,16 @@ namespace Kyanite
 		friend AudioBufferGroup;
 
 	public:
+
+		/** @brief Get the currently active AudioManager. */
+		static AudioManager &getActiveManager(void);
+
+		/** @brief Makes this instance the active AudioManager. 
+		@note Audio componenets belong to the AudioManager that was active when they were constructed. */
+		void makeActive(void);
+
+		/** @brief Checks if this is currently the active manager. @returns `true` if currently the active manager. */
+		bool isActive(void);
 
 		/** @brief Create the audio manager on the default device, with default attributes for the 'ALContext'. 
 		@param [in] default_buffer_group_path_prefix Default path-prefix for new buffer groups. */

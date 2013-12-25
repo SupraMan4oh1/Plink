@@ -44,6 +44,9 @@ namespace Kyanite
 		@param [in] mask_debug Is this a regular or a debug message.
 		@param [in] ... Arguments for the format string. */
 		static void fLogMessage(std::string const &format_string, Ogre::LogMessageLevel level, bool mask_debug, ...);
+
+		/** @overload fLogMessage(std::string const &format_string, Ogre::LogMessageLevel level, bool mask_debug, ...) */
+		static void fLogMessage(std::string const &format_string, ...);
 	};
 
 }

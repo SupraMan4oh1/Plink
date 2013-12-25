@@ -90,3 +90,15 @@ void AppUtility::fLogMessage(std::string const &format_string, Ogre::LogMessageL
 
 	Ogre::LogManager::getSingleton().logMessage(string_buffer, level, mask_debug);
 }
+
+void fLogMessage(std::string const &format_string, ...)
+{
+	va_list arguments;
+	char string_buffer[STRING_BUFFER_LENGTH];
+
+	va_start(arguments, format_string);
+	vsnprintf_s(string_buffer, STRING_BUFFER_LENGTH, format_string.c_str(), arguments);
+	va_end(arguments);
+
+	Ogre::LogManager::getSingleton().logMessage(string_buffer, Ogre::LML_NORMAL, false);
+}

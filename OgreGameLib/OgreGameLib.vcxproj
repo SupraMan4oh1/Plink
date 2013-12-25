@@ -154,8 +154,10 @@
     </Xdcmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AlureExtension.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="AppUtility.h" />
+    <ClInclude Include="AudioBuffer.h" />
     <ClInclude Include="AudioBufferGroup.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="AudioSource.h" />
@@ -165,8 +167,10 @@
     <ClInclude Include="KyaniteConstants.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlureExtension.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="AppUtility.cpp" />
+    <ClCompile Include="AudioBuffer.cpp" />
     <ClCompile Include="AudioBufferGroup.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="AudioSource.cpp" />

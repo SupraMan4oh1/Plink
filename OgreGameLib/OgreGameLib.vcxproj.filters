@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Kyanite">
       <UniqueIdentifier>{875395b0-15df-4d14-b8e0-589470502458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menura">
+      <UniqueIdentifier>{8f316dd9-1c1e-4224-ac7e-457868e09f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menura">
+      <UniqueIdentifier>{f8e9138b-cb0d-41a7-914e-08e719c481eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h">
@@ -33,9 +39,6 @@
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Header Files\Kyanite</Filter>
-    </ClInclude>
     <ClInclude Include="AppUtility.h">
       <Filter>Header Files\Kyanite</Filter>
     </ClInclude>
@@ -45,8 +48,17 @@
     <ClInclude Include="AudioBufferGroup.h">
       <Filter>Header Files\Kyanite</Filter>
     </ClInclude>
+    <ClInclude Include="AudioBuffer.h">
+      <Filter>Header Files\Menura</Filter>
+    </ClInclude>
     <ClInclude Include="AudioSource.h">
-      <Filter>Header Files\Kyanite</Filter>
+      <Filter>Header Files\Menura</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header Files\Menura</Filter>
+    </ClInclude>
+    <ClInclude Include="AlureExtension.h">
+      <Filter>Header Files\Menura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,17 +71,23 @@
     <ClCompile Include="Globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Source Files\Kyanite</Filter>
-    </ClCompile>
     <ClCompile Include="AppUtility.cpp">
       <Filter>Source Files\Kyanite</Filter>
     </ClCompile>
     <ClCompile Include="AudioBufferGroup.cpp">
       <Filter>Source Files\Kyanite</Filter>
     </ClCompile>
+    <ClCompile Include="AudioBuffer.cpp">
+      <Filter>Source Files\Menura</Filter>
+    </ClCompile>
     <ClCompile Include="AudioSource.cpp">
-      <Filter>Source Files\Kyanite</Filter>
+      <Filter>Source Files\Menura</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Menura</Filter>
+    </ClCompile>
+    <ClCompile Include="AlureExtension.cpp">
+      <Filter>Source Files\Menura</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

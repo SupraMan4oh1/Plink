@@ -9,7 +9,24 @@
 #include "AudioBufferGroup.h"
 #include "AudioSource.h"
 
-using namespace Kyanite;
+using namespace Menura;
+
+static AudioManager *s_ActiveAudioManager;
+
+AudioManager &AudioManager::getActiveManager(void)
+{
+	return *s_ActiveAudioManager;
+}
+
+void AudioManager::makeActive(void)
+{
+	s_ActiveAudioManager = this;
+}
+
+bool AudioManager::isActive(void)
+{
+	return s_ActiveAudioManager == this;
+}
 
 AudioManager::AudioManager(std::string default_buffer_group_path_prefix) : m_BufferGroupPathPrefix(std::move(default_buffer_group_path_prefix))
 {
@@ -17,7 +34,7 @@ AudioManager::AudioManager(std::string default_buffer_group_path_prefix) : m_Buf
 
 	if (error == AL_FALSE)
 	{
-		AppUtility::fLogMessage("Cannot initialize the audio device or create a context. Encountered error: `%s`", 
+		Kyanite::AppUtility::fLogMessage("Cannot initialize the audio device or create a context. Encountered error: `%s`", 
 			Ogre::LogMessageLevel::LML_CRITICAL, false, alureGetErrorString());
 
 		enterFailureState();
@@ -30,7 +47,7 @@ AudioManager::AudioManager(std::string default_buffer_group_path_prefix) : m_Buf
 	calculateMaxSourceCount();
 	createDefaultBufferGroup();
 
-	AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
+	Kyanite::AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
 
 
 
@@ -41,14 +58,14 @@ AudioManager::AudioManager(std::string default_buffer_group_path_prefix) : m_Buf
 
 	if ((error = alGetError()) != AL_NO_ERROR)
 	{
-		AppUtility::fLogMessage("alGenSources: %s", Ogre::LogMessageLevel::LML_CRITICAL, false, alGetString(error));
+		Kyanite::AppUtility::fLogMessage("alGenSources: %s", Ogre::LogMessageLevel::LML_CRITICAL, false, alGetString(error));
 	}
 
 	alSourcei(source, AL_BUFFER, buffer);
 
 	if ((error = alGetError()) != AL_NO_ERROR)
 	{
-		AppUtility::fLogMessage("alSourcei: %s", Ogre::LogMessageLevel::LML_CRITICAL, false, alGetString(error));
+		Kyanite::AppUtility::fLogMessage("alSourcei: %s", Ogre::LogMessageLevel::LML_CRITICAL, false, alGetString(error));
 	}
 
 	ALfloat position[3] = { 10, 10, 0 };
@@ -107,7 +124,7 @@ AudioManager::AudioManager(std::string default_buffer_group_path_prefix, ALCchar
 
 	if (error == AL_FALSE)
 	{
-		AppUtility::fLogMessage("Cannot initialize the audio device or create a context. Encountered error: %s",
+		Kyanite::AppUtility::fLogMessage("Cannot initialize the audio device or create a context. Encountered error: %s",
 			Ogre::LogMessageLevel::LML_CRITICAL, false, alureGetErrorString());
 
 		enterFailureState();
@@ -120,7 +137,7 @@ AudioManager::AudioManager(std::string default_buffer_group_path_prefix, ALCchar
 	calculateMaxSourceCount();
 	createDefaultBufferGroup();
 
-	AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
+	Kyanite::AppUtility::fLogMessage("AudioManager: Number of concurrent audio sources supported: %d", Ogre::LML_NORMAL, true, m_MaxSourceCount);
 }
 
 AudioManager::~AudioManager()
@@ -129,7 +146,7 @@ AudioManager::~AudioManager()
 
 	if (error == AL_FALSE)
 	{
-		AppUtility::fLogMessage("Encountered error: `%s` when attempting to shutdown the audio device.",
+		Kyanite::AppUtility::fLogMessage("Encountered error: `%s` when attempting to shutdown the audio device.",
 			Ogre::LogMessageLevel::LML_CRITICAL, false, alureGetErrorString());
 	}
 }
@@ -283,13 +300,13 @@ bool AudioManager::currentlyAddingBufferGroup(void)
 
 void AudioManager::enterFailureState(void)
 {
-	AppUtility::logMessage("AudioManager entered failure state.", Ogre::LML_CRITICAL);
+	Kyanite::AppUtility::logMessage("AudioManager entered failure state.", Ogre::LML_CRITICAL);
 
 	ALboolean error = alureShutdownDevice();
 
 	if (error == AL_FALSE)
 	{
-		AppUtility::fLogMessage("Encountered error: `%s` when attempting to shutdown the audio device.",
+		Kyanite::AppUtility::fLogMessage("Encountered error: `%s` when attempting to shutdown the audio device.",
 			Ogre::LogMessageLevel::LML_CRITICAL, false, alureGetErrorString());
 	}
 
